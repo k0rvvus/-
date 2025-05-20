@@ -220,11 +220,13 @@
 
   const payload = { name, meat, alcohol, gift };
 
+  const formData = new FormData();
+  formData.append("data", JSON.stringify(payload));
+
   try {
     const response = await fetch("https://script.google.com/macros/s/AKfycbzjf8poTlz1mbYEP9hC9m4mt2oQ47ar3Sb6mRBAHSUZSPqHw3AfeaATP-DkE3dVGYk_8Q/exec", {
       method: "POST",
-      body: JSON.stringify(payload),
-      headers: { "Content-Type": "application/json" }
+      body: formData
     });
 
     if (response.ok) {
