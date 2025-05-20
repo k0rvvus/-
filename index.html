@@ -1,105 +1,137 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Свадьба Ивана и Ярославы</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Свадебное приглашение</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Open Sans', sans-serif;
-      color: #333;
-      background: linear-gradient(to bottom, #fefefe, #f8f3f9);
-      overflow-x: hidden;
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: url('kraft-background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #8B0000; /* Красный акцент */
+      padding: 20px;
     }
-    header {
-      height: 100vh;
-      background: url('https://www.transparenttextures.com/patterns/whitediamond.png');
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    h1, h2 {
       text-align: center;
-      position: relative;
-      animation: fadeIn 2s ease-in;
+      font-weight: normal;
     }
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      color: #a675a1;
+    .section {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 15px;
+      margin-bottom: 20px;
     }
-    h2 {
-      font-size: 1.5rem;
-      margin-top: 1rem;
-      color: #666;
-    }
-    section {
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    .rsvp-form {
-      max-width: 400px;
-      margin: 0 auto;
-    }
-    input, select, button {
-      width: 100%;
-      padding: 0.75rem;
-      margin: 0.5rem 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-    button {
-      background-color: #eac6dc;
+    .button {
+      display: inline-block;
+      margin: 10px 5px;
+      padding: 10px 20px;
+      background-color: #8B0000;
+      color: white;
       border: none;
+      border-radius: 8px;
+      font-size: 1em;
       cursor: pointer;
-      transition: 0.3s;
     }
-    button:hover {
-      background-color: #d9adc9;
+    .button:hover {
+      background-color: #a50000;
     }
-    .map {
-      margin-top: 2rem;
+    .form-group {
+      margin-bottom: 15px;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      .section {
+        padding: 15px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Иван и Ярослава</h1>
-    <h2>07.07.2025 в 16:00<br>Алматы, ресторан Tito Arcanum</h2>
-  </header>
 
-  <section>
-    <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
-      Дорогие друзья! Мы хотим разделить с вами важный день — день нашей свадьбы! Приглашаем вас стать частью этого волшебного события. Нам будет очень приятно видеть вас рядом в этот момент.
-    </p>
-  </section>
+  <div class="section">
+    <h1>Приглашаем на наше свадебное торжество!</h1>
+    <h2>7 июля 2025 года в 16:00</h2>
+  </div>
 
-  <section>
+  <div class="section">
+    <h2>О нас</h2>
+    <p>Познакомились мы случайно — но с первого взгляда! Кто первый заговорил? Конечно, он! А вот предложение сделала... тоже он, но она намекала.</p>
+  </div>
+
+  <div class="section">
+    <h2>Программа дня</h2>
+    <ul>
+      <li>16:00 — Сбор гостей</li>
+      <li>16:30 — Торжественная церемония</li>
+      <li>17:00 — Ужин и веселье</li>
+      <li>20:00 — Танцы, конкурсы и поздравления</li>
+    </ul>
+  </div>
+
+  <div class="section">
     <h2>Место проведения</h2>
-    <p>Ресторан Tito Arcanum, Алматы</p>
-    <div class="map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2924.994032869536!2d76.92099607716894!3d43.23894917270362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836fddcf26f2e9%3A0xc853ac9dfe6c63fc!2sTito%20Arcanum!5e0!3m2!1sru!2skz!4v1715700456789!5m2!1sru!2skz" width="100%" height="300" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
-  </section>
+    <p>Ресторан <strong>Tito Arcanum</strong>, итальянский дворик</p>
+    <a href="https://2gis.kz/almaty/geo/9429940001708119/76.912574,43.210526" target="_blank" class="button">Открыть карту</a>
+  </div>
 
-  <section>
+  <div class="section">
+    <h2>Свадебный подарок</h2>
+    <p>Мы планируем свадебное путешествие и будем рады, если вы сделаете в него свой вклад в качестве подарка.</p>
+    <button class="button">Прочитано</button>
+  </div>
+
+  <div class="section">
+    <h2>Вопросы по еде</h2>
+    <p><strong>Какое мясо предпочитаете?</strong></p>
+    <div>
+      <button class="button">Курица</button>
+      <button class="button">Говядина</button>
+      <button class="button">Рыба</button>
+      <button class="button">Баранина</button>
+      <button class="button">Ем всё</button>
+    </div>
+    <p><strong>Какой алкоголь предпочитаете?</strong></p>
+    <div>
+      <button class="button">Вино</button>
+      <button class="button">Шампанское</button>
+      <button class="button">Коньяк</button>
+      <button class="button">Водка</button>
+      <button class="button">Не пью алкоголь</button>
+    </div>
+  </div>
+
+  <div class="section">
     <h2>RSVP</h2>
     <p>Пожалуйста, подтвердите своё участие:</p>
-    <form class="rsvp-form" action="#" method="POST">
-      <input type="text" name="name" placeholder="Ваше имя" required>
-      <select name="attendance" required>
-        <option value="">Выберите вариант</option>
-        <option value="yes">Буду обязательно!</option>
-        <option value="no">К сожалению, не смогу</option>
-      </select>
-      <button type="submit">Отправить</button>
-    </form>
-  </section>
+    <div class="form-group">
+      <label for="name">ФИО:</label>
+      <input type="text" id="name" placeholder="Введите ваше полное имя" />
+    </div>
+    <button class="button" onclick="confirmRSVP()">Я приду!</button>
+  </div>
+
+  <script>
+    function confirmRSVP() {
+      const name = document.getElementById("name").value;
+      if (!name.trim()) {
+        alert("Пожалуйста, введите ФИО перед отправкой!");
+      } else {
+        alert(`Спасибо, ${name}! Мы вас ждём!`);
+      }
+    }
+  </script>
+
 </body>
 </html>
