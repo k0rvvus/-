@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Свадебное приглашение</title>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Caveat', cursive;
+      font-family: 'Nunito', sans-serif;
       background: url('kraft-background.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #8B0000;
@@ -21,16 +21,13 @@
     }
 
     .section {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: tearOpen 1s ease-out forwards;
-      animation-delay: var(--delay, 0s);
       max-width: 700px;
       margin: 40px auto;
       padding: 20px;
-      background: rgba(255,255,255,0.85);
-      border-radius: 15px;
       position: relative;
+      opacity: 1;
+      transform: none;
+      background: none;
     }
 
     .sticker {
@@ -90,19 +87,6 @@
       }
       .section {
         padding: 15px;
-      }
-    }
-
-    @keyframes tearOpen {
-      0% {
-        clip-path: circle(0% at 50% 50%);
-        opacity: 0;
-        transform: scale(0.9) rotate(-2deg);
-      }
-      100% {
-        clip-path: circle(150% at 50% 50%);
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
       }
     }
 
@@ -175,11 +159,17 @@
   <div class="section sticker" style="--delay: 1.8s;">
     <h2>RSVP</h2>
     <p>Пожалуйста, подтвердите своё участие:</p>
+
     <div class="form-group">
       <label for="name">ФИО:</label>
-      <input type="text" id="name" placeholder="Введите ваше полное имя" />
+      <input type="text" id="name" placeholder="Введите ваше полное имя" required />
     </div>
-    <button class="button" onclick="confirmRSVP()">Я приду!</button>
+
+    <input type="hidden" id="meat-choice" />
+    <input type="hidden" id="alcohol-choice" />
+    <input type="hidden" id="gift-confirmation" />
+
+    <button class="button" onclick="submitRSVP()">Я приду!</button>
   </div>
 
   <script>
@@ -187,38 +177,52 @@
       const group = button.parentElement.querySelectorAll('.button');
       group.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
-    }
 
-    function confirmRSVP() {
-      const name = document.getElementById("name").value;
-      if (!name.trim()) {
-        alert("Пожалуйста, введите ФИО перед отправкой!");
-      } else {
-        alert(`Спасибо, ${name}! Мы вас ждём!`);
+      const value = button.textContent;
+
+      if (button.parentElement.previousElementSibling?.textContent.includes("мясо")) {
+        document.getElementById("meat-choice").value = value;
+      } else if (button.parentElement.previousElementSibling?.textContent.includes("алкоголь")) {
+        document.getElementById("alcohol-choice").value = value;
       }
     }
 
     function markAsRead(button) {
       button.classList.add("active");
       button.innerText = "Спасибо!";
+      document.getElementById("gift-confirmation").value = "Да, ознакомлен(а)";
     }
 
-    // Появление при прокрутке
-    const sections = document.querySelectorAll('.section, .sticker');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.animationPlayState = 'running';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
+    async function submitRSVP() {
+      const name = document.getElementById("name").value.trim();
+      const meat = document.getElementById("meat-choice").value;
+      const alcohol = document.getElementById("alcohol-choice").value;
+      const gift = document.getElementById("gift-confirmation").value;
 
-    sections.forEach(sec => {
-      sec.style.animationPlayState = 'paused';
-      observer.observe(sec);
-    });
+      if (!name) {
+        alert("Пожалуйста, введите ФИО.");
+        return;
+      }
+
+      const payload = { name, meat, alcohol, gift };
+
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbz_2cHTtY8kVlXRrG-ZSinP2D6QVj3jBatIdJkIt2mHWEa_UL6-0nG9JOeaT5t8ril8SQ/exec", {
+          method: "POST",
+          body: JSON.stringify(payload),
+          headers: { "Content-Type": "application/json" }
+        });
+
+        if (response.ok) {
+          alert(`Спасибо, ${name}! Мы вас ждём!`);
+          document.getElementById("name").value = "";
+        } else {
+          alert("Произошла ошибка при отправке. Попробуйте позже.");
+        }
+      } catch (error) {
+        alert("Не удалось связаться с сервером. Попробуйте позже.");
+      }
+    }
   </script>
 
 </body>
