@@ -4,27 +4,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Свадебное приглашение</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-family: 'Caveat', cursive;
       background: url('kraft-background.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: #8B0000; /* Красный акцент */
+      color: #8B0000;
       padding: 20px;
     }
+
     h1, h2 {
       text-align: center;
       font-weight: normal;
     }
+
     .section {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: tearOpen 1s ease-out forwards;
+      animation-delay: var(--delay, 0s);
       max-width: 700px;
-      margin: auto;
+      margin: 40px auto;
       padding: 20px;
-      background: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.85);
       border-radius: 15px;
-      margin-bottom: 20px;
+      position: relative;
     }
+
+    .sticker {
+      opacity: 0;
+      transform-origin: top;
+      animation: peelSticker 0.8s ease-out forwards;
+      animation-delay: var(--delay, 0s);
+    }
+
     .button {
       display: inline-block;
       margin: 10px 5px;
@@ -33,21 +48,42 @@
       color: white;
       border: none;
       border-radius: 8px;
-      font-size: 1em;
+      font-size: 1.1em;
       cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
     }
+
     .button:hover {
       background-color: #a50000;
+      transform: scale(1.05);
     }
-    .form-group {
-      margin-bottom: 15px;
+
+    .button.active {
+      background-color: #006400;
+      color: white;
     }
+
     input[type="text"] {
       width: 100%;
       padding: 10px;
       border-radius: 8px;
       border: 1px solid #ccc;
+      font-size: 1em;
     }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+
     @media (max-width: 600px) {
       body {
         padding: 10px;
@@ -56,21 +92,45 @@
         padding: 15px;
       }
     }
+
+    @keyframes tearOpen {
+      0% {
+        clip-path: circle(0% at 50% 50%);
+        opacity: 0;
+        transform: scale(0.9) rotate(-2deg);
+      }
+      100% {
+        clip-path: circle(150% at 50% 50%);
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    @keyframes peelSticker {
+      0% {
+        transform: rotateX(-90deg) scale(0.9);
+        opacity: 0;
+      }
+      100% {
+        transform: rotateX(0deg) scale(1);
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <div class="section">
+  <div class="section" style="--delay: 0s;">
     <h1>Приглашаем на наше свадебное торжество!</h1>
     <h2>7 июля 2025 года в 16:00</h2>
   </div>
 
-  <div class="section">
+  <div class="section" style="--delay: 0.3s;">
     <h2>О нас</h2>
     <p>Познакомились мы случайно — но с первого взгляда! Кто первый заговорил? Конечно, он! А вот предложение сделала... тоже он, но она намекала.</p>
   </div>
 
-  <div class="section">
+  <div class="section sticker" style="--delay: 0.6s;">
     <h2>Программа дня</h2>
     <ul>
       <li>16:00 — Сбор гостей</li>
@@ -80,39 +140,39 @@
     </ul>
   </div>
 
-  <div class="section">
+  <div class="section" style="--delay: 0.9s;">
     <h2>Место проведения</h2>
     <p>Ресторан <strong>Tito Arcanum</strong>, итальянский дворик</p>
     <a href="https://2gis.kz/almaty/geo/9429940001708119/76.912574,43.210526" target="_blank" class="button">Открыть карту</a>
   </div>
 
-  <div class="section">
+  <div class="section sticker" style="--delay: 1.2s;">
     <h2>Свадебный подарок</h2>
     <p>Мы планируем свадебное путешествие и будем рады, если вы сделаете в него свой вклад в качестве подарка.</p>
-    <button class="button">Прочитано</button>
+    <button class="button" onclick="markAsRead(this)">Прочитано</button>
   </div>
 
-  <div class="section">
+  <div class="section" style="--delay: 1.5s;">
     <h2>Вопросы по еде</h2>
     <p><strong>Какое мясо предпочитаете?</strong></p>
     <div>
-      <button class="button">Курица</button>
-      <button class="button">Говядина</button>
-      <button class="button">Рыба</button>
-      <button class="button">Баранина</button>
-      <button class="button">Ем всё</button>
+      <button class="button" onclick="toggleActive(this)">Курица</button>
+      <button class="button" onclick="toggleActive(this)">Говядина</button>
+      <button class="button" onclick="toggleActive(this)">Рыба</button>
+      <button class="button" onclick="toggleActive(this)">Баранина</button>
+      <button class="button" onclick="toggleActive(this)">Ем всё</button>
     </div>
     <p><strong>Какой алкоголь предпочитаете?</strong></p>
     <div>
-      <button class="button">Вино</button>
-      <button class="button">Шампанское</button>
-      <button class="button">Коньяк</button>
-      <button class="button">Водка</button>
-      <button class="button">Не пью алкоголь</button>
+      <button class="button" onclick="toggleActive(this)">Вино</button>
+      <button class="button" onclick="toggleActive(this)">Шампанское</button>
+      <button class="button" onclick="toggleActive(this)">Коньяк</button>
+      <button class="button" onclick="toggleActive(this)">Водка</button>
+      <button class="button" onclick="toggleActive(this)">Не пью алкоголь</button>
     </div>
   </div>
 
-  <div class="section">
+  <div class="section sticker" style="--delay: 1.8s;">
     <h2>RSVP</h2>
     <p>Пожалуйста, подтвердите своё участие:</p>
     <div class="form-group">
@@ -123,6 +183,12 @@
   </div>
 
   <script>
+    function toggleActive(button) {
+      const group = button.parentElement.querySelectorAll('.button');
+      group.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+    }
+
     function confirmRSVP() {
       const name = document.getElementById("name").value;
       if (!name.trim()) {
@@ -131,6 +197,28 @@
         alert(`Спасибо, ${name}! Мы вас ждём!`);
       }
     }
+
+    function markAsRead(button) {
+      button.classList.add("active");
+      button.innerText = "Спасибо!";
+    }
+
+    // Появление при прокрутке
+    const sections = document.querySelectorAll('.section, .sticker');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(sec => {
+      sec.style.animationPlayState = 'paused';
+      observer.observe(sec);
+    });
   </script>
 
 </body>
