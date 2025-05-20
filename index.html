@@ -194,35 +194,50 @@
     }
 
     async function submitRSVP() {
-      const name = document.getElementById("name").value.trim();
-      const meat = document.getElementById("meat-choice").value;
-      const alcohol = document.getElementById("alcohol-choice").value;
-      const gift = document.getElementById("gift-confirmation").value;
+  const nameField = document.getElementById("name");
+  const name = nameField.value.trim();
+  const meat = document.getElementById("meat-choice").value;
+  const alcohol = document.getElementById("alcohol-choice").value;
+  const gift = document.getElementById("gift-confirmation").value;
 
-      if (!name) {
-        alert("Пожалуйста, введите ФИО.");
-        return;
-      }
+  if (!name) {
+    alert("Пожалуйста, введите ФИО.");
+    nameField.focus();
+    return;
+  }
+  if (!meat) {
+    alert("Пожалуйста, выберите предпочитаемое мясо.");
+    return;
+  }
+  if (!alcohol) {
+    alert("Пожалуйста, выберите предпочитаемый алкоголь.");
+    return;
+  }
+  if (!gift) {
+    alert("Пожалуйста, нажмите 'Прочитано' в разделе с подарком.");
+    return;
+  }
 
-      const payload = { name, meat, alcohol, gift };
+  const payload = { name, meat, alcohol, gift };
 
-      try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbz_2cHTtY8kVlXRrG-ZSinP2D6QVj3jBatIdJkIt2mHWEa_UL6-0nG9JOeaT5t8ril8SQ/exec", {
-          method: "POST",
-          body: JSON.stringify(payload),
-          headers: { "Content-Type": "application/json" }
-        });
+  try {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbzjf8poTlz1mbYEP9hC9m4mt2oQ47ar3Sb6mRBAHSUZSPqHw3AfeaATP-DkE3dVGYk_8Q/exec", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: { "Content-Type": "application/json" }
+    });
 
-        if (response.ok) {
-          alert(`Спасибо, ${name}! Мы вас ждём!`);
-          document.getElementById("name").value = "";
-        } else {
-          alert("Произошла ошибка при отправке. Попробуйте позже.");
-        }
-      } catch (error) {
-        alert("Не удалось связаться с сервером. Попробуйте позже.");
-      }
+    if (response.ok) {
+      alert(`Спасибо, ${name}! Мы вас ждём!`);
+      resetForm();
+    } else {
+      alert("Произошла ошибка при отправке. Попробуйте позже.");
     }
+  } catch (error) {
+    alert("Не удалось связаться с сервером. Попробуйте позже.");
+  }
+}
+
   </script>
 
 </body>
