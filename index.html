@@ -199,6 +199,7 @@ async function submitRSVP() {
   const alcohol = document.getElementById("alcohol-choice").value;
   const gift = document.getElementById("gift-confirmation").value;
 
+  // Валидация
   if (!name) {
     alert("Пожалуйста, введите ФИО.");
     nameField.focus();
@@ -217,29 +218,35 @@ async function submitRSVP() {
     return;
   }
 
-  const payload = { name, meat, alcohol, gift };
+  // Создаем URL с параметрами
+  const scriptURL = "https://script.google.com/macros/s/AKfycbze48uVP9YiMxRXI9EZhggWbehF9oEf_UKk-L7YmiRL7wPaMsLfoNVeLgVgohpwYJYo4w/exec";
+  const url = `${scriptURL}?callback=handleResponse&name=${encodeURIComponent(name)}&meat=${encodeURIComponent(meat)}&alcohol=${encodeURIComponent(alcohol)}&gift=${encodeURIComponent(gift)}`;
 
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbyMShI0HGXsnB3KzYYeLlIJt4UpbligodYOnruSG08Uq1YbvCk2LFGC06UFS4jrRTlHaw/exec", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (response.ok) {
+  // Функция обработки ответа
+  window.handleResponse = function(data) {
+    if (data.result === "success") {
       alert(`Спасибо, ${name}! Мы вас ждём!`);
-      resetForm();
+      // Сброс формы
+      nameField.value = "";
+      document.getElementById("meat-choice").value = "";
+      document.getElementById("alcohol-choice").value = "";
+      document.getElementById("gift-confirmation").value = "";
+      document.querySelectorAll('.button').forEach(btn => btn.classList.remove('active'));
     } else {
-      alert("Произошла ошибка при отправке. Попробуйте позже.");
+      alert("Ошибка: " + data.message);
     }
-  } catch (error) {
-    alert("Не удалось связаться с сервером. Попробуйте позже.");
-  }
+    // Удаляем скрипт после использования
+    document.body.removeChild(script);
+    delete window.handleResponse;
+  };
+
+  // Создаем и добавляем script элемент
+  const script = document.createElement('script');
+  script.src = url;
+  document.body.appendChild(script);
 }
-    
-  </script>
+</script>
+}
 
 </body>
 </html>
