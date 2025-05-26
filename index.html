@@ -4,15 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Свадебное приглашение</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Nunito', sans-serif;
-      background: url('kraft-background1.jpg') no-repeat center center fixed;
+      padding: 0;
+      font-family: Georgia, serif;
+       background: url('kraft-background1.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #8B0000;
-      padding: 20px;
     }
 
     h1, h2 {
@@ -20,161 +19,170 @@
       font-weight: normal;
     }
 
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
     .section {
-      max-width: 700px;
-      margin: 40px auto;
-      padding: 20px;
-      position: relative;
-      opacity: 1;
-      transform: none;
-      background: none;
-    }
-
-    .sticker {
-      opacity: 0;
-      transform-origin: top;
-      animation: peelSticker 0.8s ease-out forwards;
-      animation-delay: var(--delay, 0s);
-    }
-
-    .button {
-      display: inline-block;
-      margin: 10px 5px;
-      padding: 10px 20px;
-      background-color: #8B0000;
-      color: white;
-      border: none;
+      background-color: #ffffff;
       border-radius: 8px;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
+      padding: 30px;
+      margin-bottom: 40px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
     }
 
-    .button:hover {
-      background-color: #a50000;
-      transform: scale(1.05);
+    .section h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
     }
 
-    .button.active {
-      background-color: #006400;
-      color: white;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1em;
-    }
-
-    .form-group {
+    .section p {
+      font-size: 18px;
+      line-height: 1.6;
       margin-bottom: 15px;
     }
 
     ul {
-      list-style-type: none;
-      padding-left: 0;
+      list-style: none;
+      padding: 0;
     }
 
-    li {
+    ul li::before {
+      content: "• ";
+      color: #8B0000;
+    }
+
+    ul li {
+      font-size: 18px;
+      line-height: 1.6;
       margin: 5px 0;
     }
 
-    @media (max-width: 600px) {
-      body {
-        padding: 10px;
-      }
-      .section {
-        padding: 15px;
-      }
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 10px 5px 0 0;
+      background-color: #8B0000;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
 
-    @keyframes peelSticker {
-      0% {
-        transform: rotateX(-90deg) scale(0.9);
-        opacity: 0;
+    .button:hover {
+      background-color: #a50000;
+    }
+
+    .button.active {
+      background-color: #006400;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 8px;
+      margin-bottom: 20px;
+    }
+
+    img {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .section {
+        padding: 20px;
       }
-      100% {
-        transform: rotateX(0deg) scale(1);
-        opacity: 1;
+
+      .button {
+        width: 100%;
+        margin-bottom: 10px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="section" style="--delay: 0s;">
-    <h1>Wedding</h1>
-    <h2>Дорогие и близкие!!!</h2>
-    <h2>Пригалашем вас на наше</h2>
-    <h2>СВАДЕБНОЕ ТОРЖЕСТВО</h2>
-    <h2>7 июля 2025 года</h2> 
-    <h2>в 16:00</h2>
-  </div>
+  <div class="container">
 
-  <div class="section" style="--delay: 0.3s;">
-    <h2>О нас</h2>
-    <p>Познакомились мы случайно — но с первого взгляда! Кто первый заговорил? Конечно, он! А вот предложение сделала... тоже он, но она намекала.</p>
-  </div>
-
-  <div class="section sticker" style="--delay: 0.6s;">
-    <h2>Программа дня</h2>
-    <ul>
-      <li>16:00 — Сбор гостей</li>
-      <li>16:30 — Торжественная церемония</li>
-      <li>17:00 — Ужин и веселье</li>
-      <li>20:00 — Танцы, конкурсы и поздравления</li>
-    </ul>
-  </div>
-
-  <div class="section" style="--delay: 0.9s;">
-    <h2>Место проведения</h2>
-    <p>Ресторан <strong>Tito Arcanum</strong>, итальянский дворик</p>
-    <img src="Итальяснкий дворик 1.jpg" alt="Фото места проведения" style="width: 100%; max-width: 600px; border-radius: 12px; margin: 20px 0;" />
-    <a href="https://2gis.kz/almaty/geo/9429940001708119/76.912574,43.210526" target="_blank" class="button">Открыть карту</a>
-  </div>
-
-  <div class="section sticker" style="--delay: 1.2s;">
-    <h2>Свадебный подарок</h2>
-    <p>Мы планируем свадебное путешествие и будем рады, если вы сделаете в него свой вклад в качестве подарка.</p>
-    <button class="button" onclick="markAsRead(this)">Прочитано</button>
-  </div>
-
-  <div class="section" style="--delay: 1.5s;">
-    <h2>Вопросы по еде</h2>
-    <p><strong>Какое мясо предпочитаете?</strong></p>
-    <div>
-      <button class="button" onclick="toggleActive(this)">Курица</button>
-      <button class="button" onclick="toggleActive(this)">Говядина</button>
-      <button class="button" onclick="toggleActive(this)">Рыба</button>
-      <button class="button" onclick="toggleActive(this)">Баранина</button>
-      <button class="button" onclick="toggleActive(this)">Ем всё</button>
-    </div>
-    <p><strong>Какой алкоголь предпочитаете?</strong></p>
-    <div>
-      <button class="button" onclick="toggleActive(this)">Вино</button>
-      <button class="button" onclick="toggleActive(this)">Шампанское</button>
-      <button class="button" onclick="toggleActive(this)">Коньяк</button>
-      <button class="button" onclick="toggleActive(this)">Водка</button>
-      <button class="button" onclick="toggleActive(this)">Не пью алкоголь</button>
-    </div>
-  </div>
-
-  <div class="section sticker" style="--delay: 1.8s;">
-    <h2>RSVP</h2>
-    <p>Пожалуйста, подтвердите своё участие:</p>
-
-    <div class="form-group">
-      <label for="name">ФИО:</label>
-      <input type="text" id="name" placeholder="Введите ваше полное имя" required />
+    <div class="section">
+      <h1>Wedding</h1>
+      <h2>Дорогие и близкие!</h2>
+      <p>Приглашаем вас на наше</p>
+      <h2>СВАДЕБНОЕ ТОРЖЕСТВО</h2>
+      <p><strong>14 июня 2025 года в 14:00</strong></p>
     </div>
 
-    <input type="hidden" id="meat-choice" />
-    <input type="hidden" id="alcohol-choice" />
-    <input type="hidden" id="gift-confirmation" />
+    <div class="section">
+      <h2>О нас</h2>
+      <p>Познакомились мы случайно — но с первого взгляда! Кто первый заговорил? Конечно, он! А вот предложение сделала... тоже он, но она намекала.</p>
+    </div>
 
-    <button class="button" onclick="submitRSVP()">Я приду!</button>
+    <div class="section">
+      <h2>Программа дня</h2>
+      <ul>
+        <li>14:00 — Сбор гостей</li>
+        <li>14:30 — Торжественная церемония</li>
+        <li>15:00 — Ужин и веселье</li>
+        <li>18:00 — Танцы, конкурсы и поздравления</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Место проведения</h2>
+      <p>Ресторан <strong>Tito Arcanum</strong>, итальянский дворик</p>
+      <img src="Итальяснкий дворик 1.jpg" alt="Фото места проведения" />
+      <p><a href="https://2gis.kz/almaty/geo/9429940001708119/76.912574,43.210526" target="_blank" class="button">Открыть карту</a></p>
+    </div>
+
+    <div class="section">
+      <h2>Свадебный подарок</h2>
+      <p>Мы планируем свадебное путешествие и будем рады, если вы сделаете в него свой вклад в качестве подарка.</p>
+      <button class="button" onclick="markAsRead(this)">Прочитано</button>
+    </div>
+
+    <div class="section">
+      <h2>Вопросы по еде</h2>
+      <p><strong>Какое мясо предпочитаете?</strong></p>
+      <div>
+        <button class="button" onclick="toggleActive(this)">Курица</button>
+        <button class="button" onclick="toggleActive(this)">Говядина</button>
+        <button class="button" onclick="toggleActive(this)">Рыба</button>
+        <button class="button" onclick="toggleActive(this)">Баранина</button>
+        <button class="button" onclick="toggleActive(this)">Ем всё</button>
+      </div>
+      <p><strong>Какой алкоголь предпочитаете?</strong></p>
+      <div>
+        <button class="button" onclick="toggleActive(this)">Вино</button>
+        <button class="button" onclick="toggleActive(this)">Шампанское</button>
+        <button class="button" onclick="toggleActive(this)">Коньяк</button>
+        <button class="button" onclick="toggleActive(this)">Водка</button>
+        <button class="button" onclick="toggleActive(this)">Не пью алкоголь</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>RSVP</h2>
+      <p>Пожалуйста, подтвердите своё участие:</p>
+      <div class="form-group">
+        <label for="name">ФИО:</label>
+        <input type="text" id="name" placeholder="Введите ваше полное имя" required />
+      </div>
+      <input type="hidden" id="meat-choice" />
+      <input type="hidden" id="alcohol-choice" />
+      <input type="hidden" id="gift-confirmation" />
+      <button class="button" onclick="submitRSVP()">Я приду!</button>
+    </div>
+
   </div>
 
   <script>
