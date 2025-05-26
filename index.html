@@ -131,7 +131,7 @@
   <div class="section" style="--delay: 0.9s;">
     <h2>Место проведения</h2>
     <p>Ресторан <strong>Tito Arcanum</strong>, итальянский дворик</p>
-    <img src="Итальяснкий дворик 1.jpg" alt="Фото места проведения" alt="Фото места проведения" style="width: 100%; max-width: 600px; border-radius: 12px; margin: 20px 0;" />
+    <img src="Итальяснкий дворик 1.jpg" alt="Фото места проведения" style="width: 100%; max-width: 600px; border-radius: 12px; margin: 20px 0;" />
     <a href="https://2gis.kz/almaty/geo/9429940001708119/76.912574,43.210526" target="_blank" class="button">Открыть карту</a>
   </div>
 
@@ -197,60 +197,55 @@
       button.innerText = "Спасибо!";
       document.getElementById("gift-confirmation").value = "Да, ознакомлен(а)";
     }
-async function submitRSVP() {
-  const nameField = document.getElementById("name");
-  const name = nameField.value.trim();
-  const meat = document.getElementById("meat-choice").value;
-  const alcohol = document.getElementById("alcohol-choice").value;
-  const gift = document.getElementById("gift-confirmation").value;
 
-  // Валидация
-  if (!name) {
-    alert("Пожалуйста, введите ФИО.");
-    nameField.focus();
-    return;
-  }
-  if (!meat) {
-    alert("Пожалуйста, выберите предпочитаемое мясо.");
-    return;
-  }
-  if (!alcohol) {
-    alert("Пожалуйста, выберите предпочитаемый алкоголь.");
-    return;
-  }
-  if (!gift) {
-    alert("Пожалуйста, нажмите 'Прочитано' в разделе с подарком.");
-    return;
-  }
+    async function submitRSVP() {
+      const nameField = document.getElementById("name");
+      const name = nameField.value.trim();
+      const meat = document.getElementById("meat-choice").value;
+      const alcohol = document.getElementById("alcohol-choice").value;
+      const gift = document.getElementById("gift-confirmation").value;
 
-  // Создаем URL с параметрами
-  const scriptURL = "https://script.google.com/macros/s/AKfycbze48uVP9YiMxRXI9EZhggWbehF9oEf_UKk-L7YmiRL7wPaMsLfoNVeLgVgohpwYJYo4w/exec";
-  const url = `${scriptURL}?callback=handleResponse&name=${encodeURIComponent(name)}&meat=${encodeURIComponent(meat)}&alcohol=${encodeURIComponent(alcohol)}&gift=${encodeURIComponent(gift)}`;
+      if (!name) {
+        alert("Пожалуйста, введите ФИО.");
+        nameField.focus();
+        return;
+      }
+      if (!meat) {
+        alert("Пожалуйста, выберите предпочитаемое мясо.");
+        return;
+      }
+      if (!alcohol) {
+        alert("Пожалуйста, выберите предпочитаемый алкоголь.");
+        return;
+      }
+      if (!gift) {
+        alert("Пожалуйста, нажмите 'Прочитано' в разделе с подарком.");
+        return;
+      }
 
-  // Функция обработки ответа
-  window.handleResponse = function(data) {
-    if (data.result === "success") {
-      alert(`Спасибо, ${name}! Мы вас ждём!`);
-      // Сброс формы
-      nameField.value = "";
-      document.getElementById("meat-choice").value = "";
-      document.getElementById("alcohol-choice").value = "";
-      document.getElementById("gift-confirmation").value = "";
-      document.querySelectorAll('.button').forEach(btn => btn.classList.remove('active'));
-    } else {
-      alert("Ошибка: " + data.message);
+      const scriptURL = "https://script.google.com/macros/s/AKfycbze48uVP9YiMxRXI9EZhggWbehF9oEf_UKk-L7YmiRL7wPaMsLfoNVeLgVgohpwYJYo4w/exec";
+      const url = `${scriptURL}?callback=handleResponse&name=${encodeURIComponent(name)}&meat=${encodeURIComponent(meat)}&alcohol=${encodeURIComponent(alcohol)}&gift=${encodeURIComponent(gift)}`;
+
+      window.handleResponse = function(data) {
+        if (data.result === "success") {
+          alert(`Спасибо, ${name}! Мы вас ждём!`);
+          nameField.value = "";
+          document.getElementById("meat-choice").value = "";
+          document.getElementById("alcohol-choice").value = "";
+          document.getElementById("gift-confirmation").value = "";
+          document.querySelectorAll('.button').forEach(btn => btn.classList.remove('active'));
+        } else {
+          alert("Ошибка: " + data.message);
+        }
+        document.body.removeChild(script);
+        delete window.handleResponse;
+      };
+
+      const script = document.createElement('script');
+      script.src = url;
+      document.body.appendChild(script);
     }
-    // Удаляем скрипт после использования
-    document.body.removeChild(script);
-    delete window.handleResponse;
-  };
-
-  // Создаем и добавляем script элемент
-  const script = document.createElement('script');
-  script.src = url;
-  document.body.appendChild(script);
-}
-</script>
+  </script>
 
 </body>
 </html>
