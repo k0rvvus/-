@@ -430,48 +430,30 @@
     script.src = url;
     document.body.appendChild(script);
   }
-<script>
-  let currentSlide = 0;
-  let slides;
+let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-fullscreen img');
+    let startX = 0;
 
-  function initCarousel() {
-    if (window.innerWidth <= 768) {
-      slides = document.querySelectorAll('.carousel-mobile img');
-    } else {
-      slides = document.querySelectorAll('.carousel-desktop img');
+    function changeSlide(direction) {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
     }
-  }
 
-  function changeSlide(direction) {
-    if (!slides || slides.length === 0) return;
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + direction + slides.length) % slides.length;
-    slides[currentSlide].classList.add('active');
-  }
+    const venueSection = document.getElementById('venue');
+    venueSection.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
 
-  // Touch swipe only for mobile
-  window.addEventListener('load', () => {
-    initCarousel();
-
-    const mobileBlock = document.querySelector('.carousel-mobile');
-    if (mobileBlock) {
-      let startX = 0;
-
-      mobileBlock.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-      });
-
-      mobileBlock.addEventListener('touchend', (e) => {
-        let endX = e.changedTouches[0].clientX;
-        if (startX - endX > 50) {
-          changeSlide(1);
-        } else if (endX - startX > 50) {
-          changeSlide(-1);
-        }
-      });
-    }
-  });
-</script>
+    venueSection.addEventListener('touchend', (e) => {
+      let endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) {
+        changeSlide(1);
+      } else if (endX - startX > 50) {
+        changeSlide(-1);
+      }
+    });
+  </script>
 
 </body>
 </html>
