@@ -191,12 +191,11 @@
     .carousel-fullscreen .left { left: 0; }
     .carousel-fullscreen .right { right: 0; left: auto; }
 
-    .grid-info {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 30px;
-      margin-top: 40px;
-    }
+    @media (max-width: 768px) {
+  .grid-info {
+    grid-template-columns: 1fr;
+  }
+}
 
     .grid-info div {
       display: flex;
@@ -219,6 +218,55 @@
       background-color: var(--green);
     }
 
+    @media (max-width: 600px) {
+  h1 {
+    font-size: 42px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  .highlight {
+    font-size: 18px;
+  }
+
+  section {
+    padding: 40px 16px;
+  }
+}
+    .button, .gift-button, .submit {
+  width: auto;
+  min-width: 130px;
+  font-size: 16px;
+  padding: 10px 16px;
+}
+
+@media (max-width: 600px) {
+  .button, .gift-button, .submit {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  input[type="text"] {
+    font-size: 14px;
+  }
+}
+    @media (max-width: 600px) {
+  #food-section h2 {
+    margin-top: 0;
+    padding-top: 10px;
+  }
+
+  #food-section {
+    padding-top: 40px;
+  }
+}
+    
     .roadmap {
       border-left: 3px solid var(--main-color);
       padding-left: 20px;
