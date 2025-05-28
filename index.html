@@ -72,6 +72,66 @@
     .button.active {
       background-color: var(--green);
     }
+    
+    .timeline {
+  position: relative;
+  margin: 0 auto;
+  padding-left: 20px;
+  border-left: 3px solid var(--main-color);
+  max-width: 600px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding-left: 30px;
+}
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  position: absolute;
+  left: -9px;
+  top: 4px;
+}
+
+.timeline-content h3 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--main-color);
+}
+
+.timeline-content p {
+  margin: 5px 0 0;
+  font-size: 16px;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .timeline {
+    padding-left: 15px;
+  }
+
+  .timeline-item {
+    padding-left: 25px;
+  }
+
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+    left: -7px;
+  }
+
+  .timeline-content h3 {
+    font-size: 18px;
+  }
+
+  .timeline-content p {
+    font-size: 15px;
+  }
+}
 
     .carousel-fullscreen {
       position: relative;
@@ -264,16 +324,40 @@
   <button class="gift-button" onclick="toggleGift(this)">Прочитано</button>
 </section>
 
-  <section style="background-color: #fdf8f5; padding: 80px 20px;">
+  <section style="background-image: url('kraft-background1.jpg');">
   <h2 style="font-family: 'Great Vibes', cursive; font-size: 48px; color: var(--main-color); margin-bottom: 40px;">Программа дня</h2>
-  <div class="roadmap" style="max-width: 600px; margin: 0 auto;">
-    <div><strong>16:00</strong> — Сбор гостей</div>
-    <div><strong>16:30</strong> — Торжественная церемония</div>
-    <div><strong>17:00</strong> — Ужин и веселье</div>
-    <div><strong>20:00</strong> — Танцы, конкурсы и поздравления</div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>16:00</h3>
+        <p>Сбор гостей</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>16:30</h3>
+        <p>Торжественная церемония</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>17:00</h3>
+        <p>Ужин и веселье</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>20:00</h3>
+        <p>Танцы, конкурсы и поздравления</p>
+      </div>
+    </div>
   </div>
 </section>
-  
+
   <section>
     <h2>Очень ждем и будем рады видеть вас на нашей свадьбе!</h2>
     <p>Подтвердите, если сможете прийти</p>
