@@ -73,6 +73,54 @@
       background-color: var(--green);
     }
 
+    /* Общие стили */
+.carousel-desktop img,
+.carousel-mobile img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.carousel-desktop img.active,
+.carousel-mobile img.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Навигация только для десктопа */
+.carousel-desktop .nav-zone {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 2;
+  cursor: pointer;
+}
+.carousel-desktop .left { left: 0; }
+.carousel-desktop .right { right: 0; left: auto; }
+
+/* Скрыть блоки по умолчанию */
+.carousel-desktop,
+.carousel-mobile {
+  display: none;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Показывать нужный блок в зависимости от устройства */
+@media (min-width: 769px) {
+  .carousel-desktop { display: block; }
+}
+@media (max-width: 768px) {
+  .carousel-mobile { display: block; }
+}
+
     .carousel-fullscreen {
       position: relative;
       width: 100%;
@@ -255,18 +303,30 @@
   </section>
 
   <section class="carousel-fullscreen" id="venue">
-    <img src="Итальяснкий дворик шир1.jpg" class="active" alt="Итальяснкий дворик шир1" />
-    <img src="Итальяснкий дворик шир2.jpg" alt="Итальяснкий дворик шир2" />
-    <img src="Итальяснкий дворик шир3.jpg" alt="Итальяснкий дворик шир3" />
-    <img src="Итальяснкий дворик шир4.jpg" alt="Итальяснкий дворик шир4" />
+  <!-- Десктопные фото -->
+  <div class="carousel-desktop">
+    <img src="Итальяснкий дворик шир1.jpg" class="active" alt="Desktop 1" />
+    <img src="Итальяснкий дворик шир2.jpg" alt="Desktop 2" />
+    <img src="Итальяснкий дворик шир3.jpg" alt="Desktop 3" />
+    <img src="Итальяснкий дворик шир4.jpg" alt="Desktop 4" />
     <div class="nav-zone left" onclick="changeSlide(-1)"></div>
     <div class="nav-zone right" onclick="changeSlide(1)"></div>
-    <div style="position:absolute; bottom:60px; left:0; right:0; text-align:center; z-index:3;">
-      <h2 style="color: white; text-shadow: 0 0 10px black;">Место проведения</h2>
-      <p class="highlight" style="color: white; text-shadow: 0 0 6px black;">Ресторан Tito Arcanum, Итальянский дворик</p>
-      <a href="https://2gis.kz/almaty/firm/9429940001708119/76.912574%2C43.210526" target="_blank" class="button">Открыть карту</a>
-    </div>
-  </section>
+  </div>
+
+  <!-- Мобильные фото -->
+  <div class="carousel-mobile">
+    <img src="фото итал сад1.png" class="active" alt="фото итал сад1" />
+    <img src="фото итал сад2.png" alt="фото итал сад2" />
+    <img src="фото итал сад3.png" alt="фото итал сад3" />
+  </div>
+
+  <div style="position:absolute; bottom:60px; left:0; right:0; text-align:center; z-index:3;">
+    <h2 style="color: white; text-shadow: 0 0 10px black;">Место проведения</h2>
+    <p class="highlight" style="color: white; text-shadow: 0 0 6px black;">Ресторан Tito Arcanum, Итальянский дворик</p>
+    <a href="https://2gis.kz/almaty/firm/9429940001708119/76.912574%2C43.210526" target="_blank" class="button">Открыть карту</a>
+  </div>
+</section>
+
   
 <section style="padding: 60px 20px;">
   <h2 style="text-align: center; font-size: 32px; color: #8B0000;">Вопросы по еде</h2>
@@ -370,28 +430,45 @@
     script.src = url;
     document.body.appendChild(script);
   }
-
+<script>
   let currentSlide = 0;
-  const slides = document.querySelectorAll('.carousel-fullscreen img');
-  let startX = 0;
+  let slides;
+
+  function initCarousel() {
+    if (window.innerWidth <= 768) {
+      slides = document.querySelectorAll('.carousel-mobile img');
+    } else {
+      slides = document.querySelectorAll('.carousel-desktop img');
+    }
+  }
 
   function changeSlide(direction) {
+    if (!slides || slides.length === 0) return;
     slides[currentSlide].classList.remove('active');
     currentSlide = (currentSlide + direction + slides.length) % slides.length;
     slides[currentSlide].classList.add('active');
   }
 
-  const venueSection = document.getElementById('venue');
-  venueSection.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-  });
+  // Touch swipe only for mobile
+  window.addEventListener('load', () => {
+    initCarousel();
 
-  venueSection.addEventListener('touchend', (e) => {
-    let endX = e.changedTouches[0].clientX;
-    if (startX - endX > 50) {
-      changeSlide(1);
-    } else if (endX - startX > 50) {
-      changeSlide(-1);
+    const mobileBlock = document.querySelector('.carousel-mobile');
+    if (mobileBlock) {
+      let startX = 0;
+
+      mobileBlock.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+      });
+
+      mobileBlock.addEventListener('touchend', (e) => {
+        let endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) {
+          changeSlide(1);
+        } else if (endX - startX > 50) {
+          changeSlide(-1);
+        }
+      });
     }
   });
 </script>
