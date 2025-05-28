@@ -72,88 +72,6 @@
     .button.active {
       background-color: var(--green);
     }
-    
-    .timeline {
-  position: relative;
-  margin: 0 auto;
-  padding-left: 20px;
-  border-left: 3px solid var(--main-color);
-  max-width: 600px;
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 40px;
-  padding-left: 30px;
-}
-
-.timeline-dot {
-  width: 16px;
-  height: 16px;
-  background-color: var(--main-color);
-  border-radius: 50%;
-  position: absolute;
-  left: -9px;
-  top: 4px;
-}
-
-    .timeline-image {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  border-radius: 8px;
-}
-
-@media (max-width: 768px) {
-  .timeline-image {
-    width: 100%;
-    padding: 0 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .timeline-image {
-    width: 100%;
-    padding: 0 5px;
-  }
-}
-    
-.timeline-content h3 {
-  margin: 0;
-  font-size: 20px;
-  color: var(--main-color);
-}
-
-.timeline-content p {
-  margin: 5px 0 0;
-  font-size: 16px;
-  color: #333;
-}
-
-@media (max-width: 600px) {
-  .timeline {
-    padding-left: 15px;
-  }
-
-  .timeline-item {
-    padding-left: 25px;
-  }
-
-  .timeline-dot {
-    width: 12px;
-    height: 12px;
-    left: -7px;
-  }
-
-  .timeline-content h3 {
-    font-size: 18px;
-  }
-
-  .timeline-content p {
-    font-size: 15px;
-  }
-}
 
     .carousel-fullscreen {
       position: relative;
@@ -191,11 +109,12 @@
     .carousel-fullscreen .left { left: 0; }
     .carousel-fullscreen .right { right: 0; left: auto; }
 
-    @media (max-width: 768px) {
-  .grid-info {
-    grid-template-columns: 1fr;
-  }
-}
+    .grid-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 30px;
+      margin-top: 40px;
+    }
 
     .grid-info div {
       display: flex;
@@ -218,55 +137,6 @@
       background-color: var(--green);
     }
 
-    @media (max-width: 600px) {
-  h1 {
-    font-size: 42px;
-  }
-
-  h2 {
-    font-size: 22px;
-  }
-
-  h3 {
-    font-size: 18px;
-  }
-
-  .highlight {
-    font-size: 18px;
-  }
-
-  section {
-    padding: 40px 16px;
-  }
-}
-    .button, .gift-button, .submit {
-  width: auto;
-  min-width: 130px;
-  font-size: 16px;
-  padding: 10px 16px;
-}
-
-@media (max-width: 600px) {
-  .button, .gift-button, .submit {
-    font-size: 14px;
-    padding: 8px 12px;
-  }
-
-  input[type="text"] {
-    font-size: 14px;
-  }
-}
-    @media (max-width: 600px) {
-  #food-section h2 {
-    margin-top: 0;
-    padding-top: 10px;
-  }
-
-  #food-section {
-    padding-top: 40px;
-  }
-}
-    
     .roadmap {
       border-left: 3px solid var(--main-color);
       padding-left: 20px;
@@ -311,6 +181,44 @@
       border-radius: 6px;
       font-size: 16px;
       cursor: pointer;
+    }
+
+    /* Адаптивное изображение */
+    .responsive-image {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Медиазапросы для мобильных устройств */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 48px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      h3 {
+        font-size: 20px;
+      }
+
+      .grid-info {
+        grid-template-columns: 1fr;
+      }
+
+      .carousel-fullscreen {
+        height: 60vh;
+      }
+
+      .carousel-fullscreen img {
+        object-fit: contain;
+      }
+
+      .responsive-image {
+        max-width: 100%;
+        height: auto;
+      }
     }
   </style>
 </head>
@@ -361,33 +269,42 @@
   </section>
 
   <section style="padding: 60px 20px;">
-  <h2 style="text-align: center; font-size: 32px; color: #8B0000;">Вопросы по еде</h2>
-  <div style="text-align: center;">
+    <h2 style="text-align: center; font-size: 32px; color: #8B0000;">Вопросы по еде</h2>
+    <div style="text-align: center;">
       <p><strong>Какое мясо предпочитаете?</strong></p>
       <div>
         <button class="button" onclick="toggleActive(this)">Курица</button>
         <button class="button" onclick="toggleActive(this)">Говядина</button>
         <button class="button" onclick="toggleActive(this)">Рыба</button>
-        <button class="button" onclick="toggleActive(this)">Баранина</button>
-        <button class="button" onclick="toggleActive(this)">Ем всё</button>
-      </div>
-    </div>
+        <button class="button" onclick="toggleActive(this)">Б
+<section style="padding: 60px 20px;">
+  <h2 style="text-align: center; font-size: 32px; color: #8B0000;">Вопросы по еде</h2>
+  <div style="text-align: center;">
+    <p><strong>Какое мясо предпочитаете?</strong></p>
     <div>
-      <p><strong>Какой алкоголь предпочитаете?</strong></p>
-      <div>
-        <button class="button" onclick="toggleActive(this)">Вино</button>
-        <button class="button" onclick="toggleActive(this)">Шампанское</button>
-        <button class="button" onclick="toggleActive(this)">Коньяк</button>
-        <button class="button" onclick="toggleActive(this)">Водка</button>
-        <button class="button" onclick="toggleActive(this)">Не пью алкоголь</button>
-      </div>
+      <button class="button" onclick="toggleActive(this)">Курица</button>
+      <button class="button" onclick="toggleActive(this)">Говядина</button>
+      <button class="button" onclick="toggleActive(this)">Рыба</button>
+      <button class="button" onclick="toggleActive(this)">Баранина</button>
+      <button class="button" onclick="toggleActive(this)">Ем всё</button>
     </div>
-    <input type="hidden" id="meat-choice" />
-    <input type="hidden" id="alcohol-choice" />
-    <input type="hidden" id="gift-confirmation" />
-  </section>
+  </div>
+  <div style="text-align: center; margin-top: 20px;">
+    <p><strong>Какой алкоголь предпочитаете?</strong></p>
+    <div>
+      <button class="button" onclick="toggleActive(this)">Вино</button>
+      <button class="button" onclick="toggleActive(this)">Шампанское</button>
+      <button class="button" onclick="toggleActive(this)">Коньяк</button>
+      <button class="button" onclick="toggleActive(this)">Водка</button>
+      <button class="button" onclick="toggleActive(this)">Не пью алкоголь</button>
+    </div>
+  </div>
+  <input type="hidden" id="meat-choice" />
+  <input type="hidden" id="alcohol-choice" />
+  <input type="hidden" id="gift-confirmation" />
+</section>
 
-  <section style="background-image: url('Батуми.png');">
+<section style="background-image: url('Батуми.png');">
   <h2 style="font-family: 'Great Vibes', cursive; font-size: 48px; color: var(--main-color);">Свадебный подарок</h2>
   <div style="background-color: rgba(245, 235, 220, 0.7); padding: 20px; border-radius: 12px; max-width: 600px; margin: 0 auto;">
     <p style="font-size: 18px; margin: 0;">Мы планируем свадебное путешествие и будем рады, если вы сделаете в него свой вклад в качестве подарка.</p>
@@ -395,95 +312,96 @@
   <button class="gift-button" onclick="toggleGift(this)">Прочитано</button>
 </section>
 
-  <section style="background-color: #fdf8f5; padding: 60px 20px; text-align: center;">
-  <img class="timeline-image" src="Black and White Simple Minimalist Wedding Timeline Planner (3).png" alt="План свадебного дня" />
+<section style="background-color: #fdf8f5; padding: 60px 20px; text-align: center;">
+  <img src="Black and White Simple Minimalist Wedding Timeline Planner (3).png" alt="План свадебного дня" class="responsive-image" />
 </section>
 
-  <section>
-    <h2>Очень ждем и будем рады видеть вас на нашей свадьбе!</h2>
-    <p>Подтвердите, если сможете прийти</p>
-    <form onsubmit="submitRSVP(); return false;">
-      <input type="text" id="name" placeholder="Введите ваше полное имя" required />
-      <button class="submit">Я приду!</button>
-    </form>
-  </section>
+<section>
+  <h2>Очень ждем и будем рады видеть вас на нашей свадьбе!</h2>
+  <p>Подтвердите, если сможете прийти</p>
+  <form onsubmit="submitRSVP(); return false;">
+    <input type="text" id="name" placeholder="Введите ваше полное имя" required />
+    <button class="submit">Я приду!</button>
+  </form>
+</section>
 
-  <script>
-    function toggleGift(btn) {
-      btn.classList.toggle('active');
-      document.getElementById("gift-confirmation").value = btn.classList.contains("active") ? "Да, ознакомлен(а)" : "";
+<script>
+  function toggleGift(btn) {
+    btn.classList.toggle('active');
+    document.getElementById("gift-confirmation").value = btn.classList.contains("active") ? "Да, ознакомлен(а)" : "";
+  }
+
+  function toggleActive(button) {
+    const group = button.parentElement.querySelectorAll('.button');
+    group.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+    const value = button.textContent;
+    if (button.parentElement.previousElementSibling?.textContent.includes("мясо")) {
+      document.getElementById("meat-choice").value = value;
+    } else if (button.parentElement.previousElementSibling?.textContent.includes("алкоголь")) {
+      document.getElementById("alcohol-choice").value = value;
+    }
+  }
+
+  function submitRSVP() {
+    const nameField = document.getElementById("name");
+    const name = nameField.value.trim();
+    const meat = document.getElementById("meat-choice").value;
+    const alcohol = document.getElementById("alcohol-choice").value;
+    const gift = document.getElementById("gift-confirmation").value;
+
+    if (!name || !meat || !alcohol || !gift) {
+      alert("Пожалуйста, заполните все поля и подтвердите подарок.");
+      return;
     }
 
-    function toggleActive(button) {
-      const group = button.parentElement.querySelectorAll('.button');
-      group.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      const value = button.textContent;
-      if (button.parentElement.previousElementSibling?.textContent.includes("мясо")) {
-        document.getElementById("meat-choice").value = value;
-      } else if (button.parentElement.previousElementSibling?.textContent.includes("алкоголь")) {
-        document.getElementById("alcohol-choice").value = value;
+    const scriptURL = "https://script.google.com/macros/s/AKfycbze48uVP9YiMxRXI9EZhggWbehF9oEf_UKk-L7YmiRL7wPaMsLfoNVeLgVgohpwYJYo4w/exec";
+    const url = `${scriptURL}?callback=handleResponse&name=${encodeURIComponent(name)}&meat=${encodeURIComponent(meat)}&alcohol=${encodeURIComponent(alcohol)}&gift=${encodeURIComponent(gift)}`;
+
+    window.handleResponse = function(data) {
+      if (data.result === "success") {
+        alert(`Спасибо, ${name}! Мы вас ждём!`);
+        nameField.value = "";
+        document.getElementById("meat-choice").value = "";
+        document.getElementById("alcohol-choice").value = "";
+        document.getElementById("gift-confirmation").value = "";
+        document.querySelectorAll('.button').forEach(btn => btn.classList.remove('active'));
+      } else {
+        alert("Ошибка: " + data.message);
       }
+      document.body.removeChild(script);
+      delete window.handleResponse;
+    };
+
+    const script = document.createElement('script');
+    script.src = url;
+    document.body.appendChild(script);
+  }
+
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.carousel-fullscreen img');
+  let startX = 0;
+
+  function changeSlide(direction) {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + direction + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }
+
+  const venueSection = document.getElementById('venue');
+  venueSection.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  venueSection.addEventListener('touchend', (e) => {
+    let endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) {
+      changeSlide(1);
+    } else if (endX - startX > 50) {
+      changeSlide(-1);
     }
+  });
+</script>
 
-    function submitRSVP() {
-      const nameField = document.getElementById("name");
-      const name = nameField.value.trim();
-      const meat = document.getElementById("meat-choice").value;
-      const alcohol = document.getElementById("alcohol-choice").value;
-      const gift = document.getElementById("gift-confirmation").value;
-
-      if (!name || !meat || !alcohol || !gift) {
-        alert("Пожалуйста, заполните все поля и подтвердите подарок.");
-        return;
-      }
-
-      const scriptURL = "https://script.google.com/macros/s/AKfycbze48uVP9YiMxRXI9EZhggWbehF9oEf_UKk-L7YmiRL7wPaMsLfoNVeLgVgohpwYJYo4w/exec";
-      const url = `${scriptURL}?callback=handleResponse&name=${encodeURIComponent(name)}&meat=${encodeURIComponent(meat)}&alcohol=${encodeURIComponent(alcohol)}&gift=${encodeURIComponent(gift)}`;
-
-      window.handleResponse = function(data) {
-        if (data.result === "success") {
-          alert(`Спасибо, ${name}! Мы вас ждём!`);
-          nameField.value = "";
-          document.getElementById("meat-choice").value = "";
-          document.getElementById("alcohol-choice").value = "";
-          document.getElementById("gift-confirmation").value = "";
-          document.querySelectorAll('.button').forEach(btn => btn.classList.remove('active'));
-        } else {
-          alert("Ошибка: " + data.message);
-        }
-        document.body.removeChild(script);
-        delete window.handleResponse;
-      };
-
-      const script = document.createElement('script');
-      script.src = url;
-      document.body.appendChild(script);
-    }
-
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel-fullscreen img');
-    let startX = 0;
-
-    function changeSlide(direction) {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + direction + slides.length) % slides.length;
-      slides[currentSlide].classList.add('active');
-    }
-
-    const venueSection = document.getElementById('venue');
-    venueSection.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-    });
-
-    venueSection.addEventListener('touchend', (e) => {
-      let endX = e.changedTouches[0].clientX;
-      if (startX - endX > 50) {
-        changeSlide(1);
-      } else if (endX - startX > 50) {
-        changeSlide(-1);
-      }
-    });
-  </script>
 </body>
 </html>
