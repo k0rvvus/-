@@ -1,9 +1,11 @@
+нужно оптимизировать код для мобильных телефонов
+вот как сейчас выглядит код сайта
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Иван и Ярослава — Свадебное приглашение</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -12,21 +14,25 @@
       --green: #1e5631;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
     html, body {
       margin: 0;
       padding: 0;
       font-family: 'Montserrat', sans-serif;
+      scroll-behavior: smooth;
       background-color: var(--bg-light);
       color: #333;
     }
 
     section {
-      padding: 80px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+      padding: 80px 20px;
+      background-size: cover;
+      background-position: center;
     }
 
     h1 {
@@ -44,7 +50,7 @@
 
     h3 {
       font-size: 22px;
-      margin: 20px 0 10px;
+      margin-top: 40px;
       color: var(--main-color);
     }
 
@@ -54,26 +60,89 @@
       color: var(--main-color);
     }
 
-    .grid-info {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 40px;
+    .button {
+      background-color: var(--main-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
     }
 
-    .grid-info div {
-      max-width: 200px;
+    .button.active {
+      background-color: var(--green);
     }
+    
+    .timeline {
+  position: relative;
+  margin: 0 auto;
+  padding-left: 20px;
+  border-left: 3px solid var(--main-color);
+  max-width: 600px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding-left: 30px;
+}
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  position: absolute;
+  left: -9px;
+  top: 4px;
+}
+
+.timeline-content h3 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--main-color);
+}
+
+.timeline-content p {
+  margin: 5px 0 0;
+  font-size: 16px;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .timeline {
+    padding-left: 15px;
+  }
+
+  .timeline-item {
+    padding-left: 25px;
+  }
+
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+    left: -7px;
+  }
+
+  .timeline-content h3 {
+    font-size: 18px;
+  }
+
+  .timeline-content p {
+    font-size: 15px;
+  }
+}
 
     .carousel-fullscreen {
       position: relative;
       width: 100%;
       height: 100vh;
       overflow: hidden;
+      touch-action: pan-y;
     }
 
-    .carousel-fullscreen picture,
     .carousel-fullscreen img {
       width: 100%;
       height: 100%;
@@ -90,78 +159,100 @@
       z-index: 1;
     }
 
-    .nav-zone {
+    .carousel-fullscreen .nav-zone {
       position: absolute;
       top: 0;
-      height: 100%;
       width: 50%;
+      height: 100%;
+      cursor: pointer;
       z-index: 2;
-      cursor: pointer;
     }
 
-    .left { left: 0; }
-    .right { right: 0; }
+    .carousel-fullscreen .left { left: 0; }
+    .carousel-fullscreen .right { right: 0; left: auto; }
 
-    .button {
-      background-color: var(--main-color);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      margin: 10px;
-      font-size: 16px;
-      cursor: pointer;
+    .grid-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 30px;
+      margin-top: 40px;
     }
 
-    .button.active, .gift-button.active {
-      background-color: var(--green);
+    .grid-info div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .gift-button {
       background-color: var(--main-color);
       color: white;
-      padding: 12px 24px;
       border: none;
-      border-radius: 6px;
-      margin-top: 20px;
+      padding: 12px 24px;
+      border-radius: 8px;
       font-size: 16px;
+      margin-top: 20px;
       cursor: pointer;
     }
 
+    .gift-button.active {
+      background-color: var(--green);
+    }
+
+    .roadmap {
+      border-left: 3px solid var(--main-color);
+      padding-left: 20px;
+      margin-top: 30px;
+    }
+
+    .roadmap div {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .roadmap div::before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      background-color: var(--main-color);
+      border-radius: 50%;
+      position: absolute;
+      left: -10px;
+      top: 5px;
+    }
+
     form {
-      max-width: 400px;
-      margin: 0 auto;
+      max-width: 500px;
+      margin-top: 30px;
     }
 
     input[type="text"] {
       width: 100%;
-      padding: 10px;
-      font-size: 16px;
+      padding: 12px;
       border: 1px solid #ccc;
       border-radius: 6px;
-      margin-bottom: 20px;
+      font-size: 16px;
     }
 
-    .roadmap img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    @media (max-width: 768px) {
-      .grid-info {
-        flex-direction: column;
-        align-items: center;
-      }
+    button.submit {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: var(--main-color);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <section style="background-image: url('kraft-background1.jpg'); background-size: cover; background-position: center;">
-    <h1>Иван и Ярослава</h1>
+  <section style="background-image: url('kraft-background1.jpg');">
+    <h1>Wedding</h1>
     <h2>Дорогие и близкие!</h2>
     <h2>Приглашаем вас на наше</h2>
-    <h2 style="font-weight: 700; font-size: 32px;">СВАДЕБНОЕ ТОРЖЕСТВО</h2>
+    <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px;">СВАДЕБНОЕ ТОРЖЕСТВО</h2>
     <p class="highlight">14 июня 2025 года в 14:00</p>
   </section>
 
@@ -170,31 +261,28 @@
     <p>Дорогие гости, с особым трепетом и теплом приглашаем Вас на торжественное событие, посвященное нашему бракосочетанию!</p>
     <div class="grid-info">
       <div>
-        <img src="когда.png" style="width: 150px;" alt="Когда">
+        <img src="когда.png" alt="Когда" style="width:150px;"/>
         <h3>Когда?</h3>
         <p>7 июля 2025 года, Понедельник</p>
       </div>
-      <div>
-        <img src="где.png" style="width: 150px;" alt="Где">
-        <h3>Во сколько?</h3>
-        <p>Сбор гостей в 16:00<br>Начало в 16:30</p>
+      <div style="margin-top: 60px;">
+        <img src="где.png" alt="Где" style="width:150px;" />
+        <h3>Где?</h3>
+        <img src="стрелка вниз.png" alt="Где именно" style="width:70px;" />
       </div>
       <div>
-        <img src="во сколько.png" style="width: 150px;" alt="Во сколько">
-        <h3>Где?</h3>
-        <p>Ресторан Tito Arcanum</p>
+        <img src="во сколько.png" alt="во сколько" style="width:150px;" />
+        <h3>Во сколько?</h3>
+        <p>Сбор гостей в 16:00<br>Начало в 16:30</p>
       </div>
     </div>
   </section>
 
   <section class="carousel-fullscreen" id="venue">
-    <picture>
-      <source srcset="mobile1.jpg" media="(max-width: 768px)">
-      <img src="Итальяснкий дворик шир1.jpg" class="active" alt="Venue 1">
-    </picture>
-    <img src="Итальяснкий дворик шир2.jpg" alt="Venue 2">
-    <img src="Итальяснкий дворик шир3.jpg" alt="Venue 3">
-    <img src="Итальяснкий дворик шир4.jpg" alt="Venue 4">
+    <img src="Итальяснкий дворик шир1.jpg" class="active" alt="Итальяснкий дворик шир1" />
+    <img src="Итальяснкий дворик шир2.jpg" alt="Итальяснкий дворик шир2" />
+    <img src="Итальяснкий дворик шир3.jpg" alt="Итальяснкий дворик шир3" />
+    <img src="Итальяснкий дворик шир4.jpg" alt="Итальяснкий дворик шир4" />
     <div class="nav-zone left" onclick="changeSlide(-1)"></div>
     <div class="nav-zone right" onclick="changeSlide(1)"></div>
     <div style="position:absolute; bottom:60px; left:0; right:0; text-align:center; z-index:3;">
@@ -204,50 +292,110 @@
     </div>
   </section>
 
-  <section>
-    <h2>Вопросы по еде</h2>
-    <p><strong>Какое мясо предпочитаете?</strong></p>
-    <div>
-      <button class="button" onclick="toggleActive(this)">Курица</button>
-      <button class="button" onclick="toggleActive(this)">Говядина</button>
-      <button class="button" onclick="toggleActive(this)">Рыба</button>
-      <button class="button" onclick="toggleActive(this)">Баранина</button>
-      <button class="button" onclick="toggleActive(this)">Ем всё</button>
+  <section style="padding: 60px 20px;">
+  <h2 style="text-align: center; font-size: 32px; color: #8B0000;">Вопросы по еде</h2>
+  <div style="text-align: center;">
+      <p><strong>Какое мясо предпочитаете?</strong></p>
+      <div>
+        <button class="button" onclick="toggleActive(this)">Курица</button>
+        <button class="button" onclick="toggleActive(this)">Говядина</button>
+        <button class="button" onclick="toggleActive(this)">Рыба</button>
+        <button class="button" onclick="toggleActive(this)">Баранина</button>
+        <button class="button" onclick="toggleActive(this)">Ем всё</button>
+      </div>
     </div>
-    <p><strong>Какой алкоголь предпочитаете?</strong></p>
     <div>
-      <button class="button" onclick="toggleActive(this)">Вино</button>
-      <button class="button" onclick="toggleActive(this)">Шампанское</button>
-      <button class="button" onclick="toggleActive(this)">Коньяк</button>
-      <button class="button" onclick="toggleActive(this)">Водка</button>
-      <button class="button" onclick="toggleActive(this)">Не пью алкоголь</button>
+      <p><strong>Какой алкоголь предпочитаете?</strong></p>
+      <div>
+        <button class="button" onclick="toggleActive(this)">Вино</button>
+        <button class="button" onclick="toggleActive(this)">Шампанское</button>
+        <button class="button" onclick="toggleActive(this)">Коньяк</button>
+        <button class="button" onclick="toggleActive(this)">Водка</button>
+        <button class="button" onclick="toggleActive(this)">Не пью алкоголь</button>
+      </div>
     </div>
+    <input type="hidden" id="meat-choice" />
+    <input type="hidden" id="alcohol-choice" />
+    <input type="hidden" id="gift-confirmation" />
   </section>
 
-  <section style="background-image: url('Батуми.png'); background-size: cover;">
-    <h2 style="font-family: 'Great Vibes', cursive; font-size: 48px; color: var(--main-color);">Свадебный подарок</h2>
-    <div style="background-color: rgba(245, 235, 220, 0.7); padding: 20px; border-radius: 12px; max-width: 600px; margin: 0 auto;">
-      <p style="font-size: 18px;">Мы планируем свадебное путешествие и будем рады, если вы сделаете в него свой вклад в качестве подарка.</p>
-    </div>
-    <button class="gift-button" onclick="toggleGift(this)">Прочитано</button>
-  </section>
+  <section style="background-image: url('Батуми.png');">
+  <h2 style="font-family: 'Great Vibes', cursive; font-size: 48px; color: var(--main-color);">Свадебный подарок</h2>
+  <div style="background-color: rgba(245, 235, 220, 0.7); padding: 20px; border-radius: 12px; max-width: 600px; margin: 0 auto;">
+    <p style="font-size: 18px; margin: 0;">Мы планируем свадебное путешествие и будем рады, если вы сделаете в него свой вклад в качестве подарка.</p>
+  </div>
+  <button class="gift-button" onclick="toggleGift(this)">Прочитано</button>
+</section>
 
-  <section class="roadmap">
-    <img src="Black and White Simple Minimalist Wedding Timeline Planner (3).png" alt="Программа дня">
-  </section>
+  <section style="background-color: #fdf8f5; padding: 60px 20px; text-align: center;">
+  <img src="Black and White Simple Minimalist Wedding Timeline Planner (3).png" alt="Black and White Simple Minimalist Wedding Timeline Planner (3)" style="max-width: 100%; height: auto; border-radius: 0px;" />
+</section>
 
   <section>
     <h2>Очень ждем и будем рады видеть вас на нашей свадьбе!</h2>
     <p>Подтвердите, если сможете прийти</p>
     <form onsubmit="submitRSVP(); return false;">
       <input type="text" id="name" placeholder="Введите ваше полное имя" required />
-      <button class="button">Я приду!</button>
+      <button class="submit">Я приду!</button>
     </form>
   </section>
 
   <script>
+    function toggleGift(btn) {
+      btn.classList.toggle('active');
+      document.getElementById("gift-confirmation").value = btn.classList.contains("active") ? "Да, ознакомлен(а)" : "";
+    }
+
+    function toggleActive(button) {
+      const group = button.parentElement.querySelectorAll('.button');
+      group.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      const value = button.textContent;
+      if (button.parentElement.previousElementSibling?.textContent.includes("мясо")) {
+        document.getElementById("meat-choice").value = value;
+      } else if (button.parentElement.previousElementSibling?.textContent.includes("алкоголь")) {
+        document.getElementById("alcohol-choice").value = value;
+      }
+    }
+
+    function submitRSVP() {
+      const nameField = document.getElementById("name");
+      const name = nameField.value.trim();
+      const meat = document.getElementById("meat-choice").value;
+      const alcohol = document.getElementById("alcohol-choice").value;
+      const gift = document.getElementById("gift-confirmation").value;
+
+      if (!name || !meat || !alcohol || !gift) {
+        alert("Пожалуйста, заполните все поля и подтвердите подарок.");
+        return;
+      }
+
+      const scriptURL = "https://script.google.com/macros/s/AKfycbze48uVP9YiMxRXI9EZhggWbehF9oEf_UKk-L7YmiRL7wPaMsLfoNVeLgVgohpwYJYo4w/exec";
+      const url = `${scriptURL}?callback=handleResponse&name=${encodeURIComponent(name)}&meat=${encodeURIComponent(meat)}&alcohol=${encodeURIComponent(alcohol)}&gift=${encodeURIComponent(gift)}`;
+
+      window.handleResponse = function(data) {
+        if (data.result === "success") {
+          alert(`Спасибо, ${name}! Мы вас ждём!`);
+          nameField.value = "";
+          document.getElementById("meat-choice").value = "";
+          document.getElementById("alcohol-choice").value = "";
+          document.getElementById("gift-confirmation").value = "";
+          document.querySelectorAll('.button').forEach(btn => btn.classList.remove('active'));
+        } else {
+          alert("Ошибка: " + data.message);
+        }
+        document.body.removeChild(script);
+        delete window.handleResponse;
+      };
+
+      const script = document.createElement('script');
+      script.src = url;
+      document.body.appendChild(script);
+    }
+
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-fullscreen img');
+    let startX = 0;
 
     function changeSlide(direction) {
       slides[currentSlide].classList.remove('active');
@@ -255,20 +403,19 @@
       slides[currentSlide].classList.add('active');
     }
 
-    function toggleGift(btn) {
-      btn.classList.toggle('active');
-    }
+    const venueSection = document.getElementById('venue');
+    venueSection.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
 
-    function toggleActive(button) {
-      const group = button.parentElement.querySelectorAll('.button');
-      group.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-    }
-
-    function submitRSVP() {
-      alert("Спасибо! Мы вас ждем!");
-    }
+    venueSection.addEventListener('touchend', (e) => {
+      let endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) {
+        changeSlide(1);
+      } else if (endX - startX > 50) {
+        changeSlide(-1);
+      }
+    });
   </script>
-
 </body>
 </html>
