@@ -139,41 +139,19 @@
       background-color: var(--green);
     }
 
-    .timeline {
-      position: relative;
-      margin: 0 auto;
-      padding-left: 20px;
-      border-left: 3px solid var(--main-color);
-      max-width: 600px;
-    }
+    .timeline-image-section {
+  padding: 60px 20px;
+  background-color: #fdf8f5;
+  text-align: center;
+}
 
-    .timeline-item {
-      position: relative;
-      margin-bottom: 40px;
-      padding-left: 30px;
-    }
-
-    .timeline-dot {
-      width: 16px;
-      height: 16px;
-      background-color: var(--main-color);
-      border-radius: 50%;
-      position: absolute;
-      left: -9px;
-      top: 4px;
-    }
-
-    .timeline-content h3 {
-      margin: 0;
-      font-size: 20px;
-      color: var(--main-color);
-    }
-
-    .timeline-content p {
-      margin: 5px 0 0;
-      font-size: 16px;
-    }
-
+.responsive-timeline-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 0;
+}
     form {
       max-width: 500px;
       margin-top: 30px;
@@ -305,8 +283,10 @@
   <button class="gift-button" onclick="toggleGift(this)">Прочитано</button>
 </section>
 
-  <section style="background-color: #fdf8f5; padding: 60px 20px; text-align: center;">
-  <img src="Black and White Simple Minimalist Wedding Timeline Planner (3).png" alt="Black and White Simple Minimalist Wedding Timeline Planner (3)" style="max-width: 100%; height: auto; border-radius: 0px;" />
+  <section class="timeline-image-section">
+  <img src="Black and White Simple Minimalist Wedding Timeline Planner (3).png" 
+       alt="Свадебная программа" 
+       class="responsive-timeline-img" />
 </section>
 
   <section>
