@@ -64,13 +64,6 @@
       color: var(--main-color);
     }
 
-    h7 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 64px;
-      color: var(--main-color);
-      margin-bottom: 10px;
-    }
-    
     .highlight {
       font-size: 24px;
       font-weight: 700;
@@ -78,7 +71,6 @@
     }
 
     .button {
-      display: inline-block;
       background-color: var(--main-color);
       color: white;
       border: none;
@@ -168,19 +160,83 @@
       background-color: var(--green);
     }
 
-    .timeline-image-section {
-      padding: 2px 1px;
+    .timeline-section {
+      padding: 80px 20px;
       background-color: #fdf8f5;
       text-align: center;
+      min-height: auto;
     }
 
-    .responsive-timeline-img {
-      width: auto;
-      max-width: 100%;
-      max-height: 90vh;
-      display: block;
+    .timeline-container {
+      max-width: 600px;
       margin: 0 auto;
-      border-radius: 0;
+      position: relative;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      margin: 40px 0;
+      position: relative;
+    }
+
+    .timeline-item.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-dot {
+      width: 20px;
+      height: 20px;
+      background-color: var(--main-color);
+      border-radius: 50%;
+      flex-shrink: 0;
+      z-index: 2;
+      position: relative;
+    }
+
+    .timeline-content {
+      background-color: white;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin: 0 20px;
+      max-width: 250px;
+    }
+
+    .timeline-time {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--main-color);
+      margin-bottom: 5px;
+    }
+
+    .timeline-text {
+      font-size: 16px;
+      font-weight: 500;
+      color: #333;
+      line-height: 1.3;
+    }
+
+    .timeline-connector {
+      width: 4px;
+      height: 60px;
+      background-color: #333;
+      margin: 0 auto;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .timeline-end {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .timeline-arrow {
+      font-size: 40px;
+      color: #333;
+      font-weight: bold;
     }
 
     form {
@@ -239,9 +295,6 @@
         font-size: 20px;
       }
 
-      h7 {
-        font-size: 64px;
-      }
       .highlight {
         font-size: 20px;
       }
@@ -290,6 +343,34 @@
       form {
         padding: 0 5px;
       }
+
+      /* Timeline mobile adjustments */
+      .timeline-section {
+        padding: 60px 15px;
+      }
+
+      .timeline-container {
+        max-width: 100%;
+      }
+
+      .timeline-item {
+        flex-direction: column !important;
+        text-align: center;
+        margin: 30px 0;
+      }
+
+      .timeline-item.reverse {
+        flex-direction: column !important;
+      }
+
+      .timeline-content {
+        margin: 15px 0 0 0;
+        max-width: 100%;
+      }
+
+      .timeline-connector {
+        height: 40px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -298,7 +379,7 @@
       }
 
       h1 {
-        font-size: 64px;
+        font-size: 40px;
       }
 
       h2 {
@@ -325,7 +406,7 @@
 
       /* Button layout for very small screens */
       .button {
-        display: inline;
+        display: block;
         width: 100%;
         margin: 5px 0;
         padding: 15px;
@@ -362,7 +443,7 @@
 <body>
 
   <section style="background-image: url('kraft-background1.jpg');">
-    <h7>Wedding</h7>
+    <h1>Wedding</h1>
     <h2>Дорогие и близкие!</h2>
     <h2>Приглашаем вас на наше</h2>
     <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px;">СВАДЕБНОЕ ТОРЖЕСТВО</h2>
@@ -440,23 +521,54 @@
     <button class="gift-button" onclick="toggleGift(this)">Прочитано</button>
   </section>
 
-  <section class="timeline-image-section">
-    <img 
-      src="Black and White Simple Minimalist Wedding Timeline Planner (5).png" 
-      alt="Свадебная программа" 
-      class="responsive-timeline-img" 
-    />
-  </section>
-
-  <section>
-    <h2>Дресс-кодод</h2>
-    <p>Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре торжества:</p>
-    <div class="grid-info">
-      <div>
-        <img src="2- (1).png" alt="цвета" style="width:150px;"/>
+  <section class="timeline-section">
+    <h2 style="font-family: 'Great Vibes', cursive; font-size: 48px; color: var(--main-color); margin-bottom: 40px;">ПРОГРАММА ДНЯ</h2>
+    
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-time">16:30</div>
+          <div class="timeline-text">СБОР ГОСТЕЙ</div>
+        </div>
+      </div>
+      
+      <div class="timeline-connector"></div>
+      
+      <div class="timeline-item reverse">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-time">16:30</div>
+          <div class="timeline-text">ТОРЖЕСТВЕННАЯ<br>ЦЕРЕМОНИЯ</div>
+        </div>
+      </div>
+      
+      <div class="timeline-connector"></div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-time">17:00</div>
+          <div class="timeline-text">УЖИН И ВЕСЕЛЬЕ</div>
+        </div>
+      </div>
+      
+      <div class="timeline-connector"></div>
+      
+      <div class="timeline-item reverse">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-time">20:00</div>
+          <div class="timeline-text">ТАНЦЫ, КОНКУРСЫ И<br>ПОЗДРАВЛЕНИЯ</div>
+        </div>
+      </div>
+      
+      <div class="timeline-end">
+        <div class="timeline-arrow">↓</div>
+      </div>
     </div>
   </section>
-  
+
   <section>
     <h2>Очень ждем и будем рады видеть вас на нашей свадьбе!</h2>
     <p>Подтвердите, если сможете прийти</p>
